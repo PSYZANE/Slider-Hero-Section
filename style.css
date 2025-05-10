@@ -47,7 +47,7 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 1s;
+    transition: 0.6s;
 }
 .slider .list .item .content{
     position: absolute;
@@ -71,7 +71,7 @@ header{
     font-family: 'Bebas Neue', sans-serif;
     line-height: 0.9em;
     transform: translateY(-100%);
-    transition: transform 1s;
+    transition: transform 0.6s;
     grid-row-start: 1;
     grid-row-end: 3;
 }
@@ -94,7 +94,7 @@ header{
     border-radius: 50%;
     transform: rotate(-60deg);
     position: relative;
-    transition: 0.1s;
+    transition: 0.6s;
 }
 .slider .list .item .image::before, 
 .slider .list .item .image::after{
@@ -111,7 +111,7 @@ header{
     var(--url);
     background-size: var(--diameter) var(--diameter);
     background-position: center;
-    transition: 1s;
+    transition: 0.6s;
 }
 .slider .list .item .image::after{
     width: 30%;
@@ -188,11 +188,11 @@ header{
     height: 70%;
     left: 50%;
     transform: translateX(-50%);
-    background-image: url(img/model.png);
+    background-image: url(assets/model.png);
     background-size: cover;
     background-position: top;
     pointer-events: none;
-    animation: showModel 1s ease-in-out 1 forwards;
+    animation: showModel 0.6s ease-in-out 1 forwards;
 }
 @keyframes showModel{
     from{
