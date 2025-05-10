@@ -1,27 +1,22 @@
 let items = document.querySelectorAll('.slider .list .item');
 let prevBtn = document.getElementById('prev');
 let nextBtn = document.getElementById('next');
-let lastPosition = items.length - 1;
+let lastPosition = items.length;
 let firstPosition = 0;
 let active = 0;
 
 nextBtn.onclick = () => {
-    active = active + 1;
+    active = (active + 1)%lastPosition;
     setSlider();
 }
 prevBtn.onclick = () => {
-    active = active - 1;
+    active = (active - 1)%lastPosition;
     setSlider();
 }
 const setSlider = () => {
     let oldActive = document.querySelector('.slider .list .item.active');
     if(oldActive) oldActive.classList.remove('active');
     items[active].classList.add('active');
-    // 
-    nextBtn.classList.remove('d-none');
-    prevBtn.classList.remove('d-none');
-    if(active == lastPosition) nextBtn.classList.add('d-none');
-    if(active == firstPosition) prevBtn.classList.add('d-none');
 }
 setSlider();
 
