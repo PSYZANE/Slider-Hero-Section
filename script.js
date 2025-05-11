@@ -10,8 +10,9 @@ nextBtn.onclick = () => {
     setSlider();
 }
 prevBtn.onclick = () => {
-    active = (active - 1)%lastPosition;
+    active = ((active + lastPosition)-1)%lastPosition
     setSlider();
+    
 }
 const setSlider = () => {
     let oldActive = document.querySelector('.slider .list .item.active');

@@ -30,6 +30,7 @@ header{
     position: relative;
     z-index: 1;
 }
+
 .slider{
     color: #eee;
     width: 100vw;
@@ -38,63 +39,35 @@ header{
     overflow: hidden;
     margin-top: -70px;
 }
+
 .item{
     position: absolute;
     inset: 0 0 0 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 0.6s;
-}
-.content{
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: max-content;
-    max-width: 100%;
-    text-align: center;
-    display: grid;
-    grid-template-columns: repeat(2, 400px);
-    text-align: left;
-    gap: 80px;
-    font-size: 1.2em;
-    text-transform: uppercase;
-    font-family: Poppins, sans-serif;
-    text-shadow: 0 0 80px #000;
-}
-.content h2{
-    font-size: 10em;
-    font-family: 'Bebas Neue', sans-serif;
-    line-height: 0.9em;
-    transform: translateY(-100%);
-    transition: transform 0.6s;
-    grid-row-start: 1;
-    grid-row-end: 3;
-}
-/* .content p{
-} */
-.content p:last-child{
-    display: flex;
-    justify-content: start;
-    align-items: end;
-    padding-bottom: 25px;
-}
-/* item default */
+    pointer-events: none;
+    opacity: 1;
+    transition: all 1s ease-in-out;
+} 
 .image{
-    flex-shrink: 0;
-    width: var(--diameter);
-    height: var(--diameter);
     background-image: var(--url);
     background-size: var(--diameter) var(--diameter);
     background-position: center;
     border-radius: 50%;
-    transform: rotate(-60deg);
+    opacity: 0;
+    
+    width: var(--diameter);
+    height: var(--diameter);
+    flex-shrink: 0;
     position: relative;
-    transition: 0.6s;
+
+    transform: rotate(60deg);
+    transition: all 1s ease-in-out;
 }
-.image::before, 
+.image::before,
 .image::after{
+    opacity: 0;
     position: absolute;
     width: 70%;
     height: 70%;
@@ -102,61 +75,82 @@ header{
     border-radius: 50%;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%)  rotate(-120deg);
+    
+    transform: translate(-50%, -50%)  rotate(120deg);
+
     background-image: 
     linear-gradient(to right, #0004, #0004),
     var(--url);
     background-size: var(--diameter) var(--diameter);
     background-position: center;
-    transition: 0.6s;
+    transition: all 1s ease-in-out !important;
 }
 .image::after{
     width: 30%;
     height: 30%;
-    background-image: var(--url);
     border: 3px solid #fff2;
+    background-image: var(--url);
     transform: translate(-50%, -50%) rotate(-170deg);
 }
-
-.item{
-    pointer-events: none;
-    opacity: 0;
+@keyframes active {
+    to{
+        transform: rotate(0deg);
+    }
 }
-/* item active */
+
 .active{
-    pointer-events: auto;
     opacity: 1;
 }
-.slider .active .image{
+.active .image{
+    opacity: 1;
+    will-change: transform;
     transform: rotate(0deg);
 }
-.slider .active .image::before,
-.slider .active .image::after
-{
-    transform: translate(-50%, -50%) rotate(0deg) ;
+.active .image::before,
+.active .image::after{
+    opacity: 1;
+    will-change: transform;
+    transform: translate(-50%, -50%) rotate(0deg);
 }
 .active .content h2{
     transform: translateY(0);
+    transition: trasnsform 1s ease-in-out;
 }
 
-.active ~ .item{
-    opacity: 0;
+.content {
+    position: absolute;
+    top: 20%;
+    /* left: 50%; */
+    width: max-content;
+    display: grid;
+    grid-template-columns: repeat(2, 400px);
+    text-align: left;
+    gap: 80px;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    font-family: poppins;
+    text-shadow: 0 0 80px #000;
+
+    will-change: transform;
+    /* transform: translateX(-50%); */
 }
-.active ~ .item .image{
-    transform: rotate(60deg);
+.content h2{
+    font-size: 10em;
+    font-family: 'Bebas Neue', sans-serif;
+    line-height: 0.85em;
+    grid-row-start: 1;
+    grid-row-end: 3;
+
+    transition: trasnsform 1s ease-in-out;
+    transform: translateY(-100%);
 }
-.active ~ .item .image::before
-{
-    transform: translate(-50%, -50%) rotate(120deg) ;
+.content p:last-child{
+    display: flex;
+    justify-content: start;
+    align-items: end;
+    padding-bottom: 25px;
 }
-.active ~ .item .image::after
-{
-    transform: translate(-50%, -50%) rotate(170deg) ;
-}
-.active ~ .item .content h2{
-    transform: translateY(100%);
-}
-/* arrows */
+
 .arrows{
     position: absolute;
     left: 50%;
@@ -170,6 +164,8 @@ header{
     all: unset;
     cursor: pointer;
 }
+
+/* MODEL IN FRONT */
 .list::after{
     position: absolute;
     content: '';
